@@ -1,0 +1,13 @@
+$grid-item-width: calc(100% / 2);
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gridItem {
+  flex: 0 0 $grid-item-width;
+  width: $grid-item-width;
+  max-width: $grid-item-width;
+  padding: 1rem;
+}

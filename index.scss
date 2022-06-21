@@ -1,0 +1,9 @@
+@import './src/assets/scss/utils';
+@import './src/assets/scss/common';
+
+:global {
+    body {
+        background-color: $dark;
+        color: $white;
+    }
+}
