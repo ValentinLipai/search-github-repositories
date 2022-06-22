@@ -22,7 +22,7 @@ export const AppInput: FC<InputProps> = ({
       type={type}
       defaultValue={defaultValue}
       placeholder={placeholder}
-      className={className}
+      className={`app-input ${className}`}
       onChange={(event) => { changeHandler(event.target.value); }}
     />
   );

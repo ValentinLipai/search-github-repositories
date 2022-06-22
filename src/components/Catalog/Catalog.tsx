@@ -15,8 +15,7 @@ export const Catalog: FC<CatalogProps> = ({ items }: CatalogProps) => (
           repoName={el.name}
           authorName={el.owner.login}
           lang={el.language}
-          langColor={el.language}
-          stars={el.stargazers_count}
+          stars={el.stargazers_count || null}
         />
       </div>
     ))}

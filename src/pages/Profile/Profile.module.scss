@@ -1,0 +1,99 @@
+.profileHeader {
+  position: relative;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.profileHeader__back {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  color: $white;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $accent;
+    path {
+      fill: $accent;
+    }
+  }
+
+  svg {
+    margin-right: 1.2rem;
+    width: 1.6rem;
+  }
+}
+
+.profileHeader__username {
+  position: relative;
+  font-size: 4.8rem;
+  padding: 0 10rem;
+}
+
+.profileHeader__usernamPlaceholder {
+  position: relative;
+  height: 4.8rem;
+}
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profile__left {
+  flex: 0 0 24rem;
+  max-width: 24rem;
+  width: 24rem;
+  margin-right: 6rem;
+}
+
+.profile__right {
+  flex: 0 0 calc(100% - 30rem);
+  max-width: calc(100% - 30rem);
+  width: calc(100% - 30rem);
+}
+
+.profile__image {
+  position: relative;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.profile__link {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.profile__linkPlaceholder {
+  height: 4.8rem;
+}
+
+.profileParams {
+  width: 100%;
+  list-style: none;
+}
+
+.profileParams__item + .profileParams__item {
+  margin-top: 1.2rem;
+}
+
+.profileParams__itemPlaceholder {
+  height: 3.2rem;
+}

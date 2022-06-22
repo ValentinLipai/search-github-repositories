@@ -15,6 +15,9 @@ module.exports = {
     alias: {
       Components: path(__dirname, '../../src/components'),
       Assets: path(__dirname, '../../src/assets'),
+      Pages: path(__dirname, '../../src/pages'),
+      Helpers: path(__dirname, '../../src/helpers'),
+      Types: path(__dirname, '../../src/types'),
     },
   },
   module: {

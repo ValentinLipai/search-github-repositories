@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.item {
+  margin: 0 0.4rem;
+}
+
+.dots {
+  padding: 0.2rem 1.2rem;
+}
+
+.button {
+  padding: 0.2rem 1.2rem;
+  background-color: transparent;
+  color: $white;
+  border: 1px solid $white;
+  border-radius: 0.2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray;
+  }
+
+  &.active {
+    background-color: $white;
+    color: $dark;
+  }
+}

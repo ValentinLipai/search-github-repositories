@@ -1,33 +1,35 @@
-import React, { FC, useState, useCallback } from 'react';
-// import { useRouter } from '@uirouter/react';
+import React, { FC, useEffect, useState } from 'react';
+import { useCurrentStateAndParams, useRouter } from '@uirouter/react';
 import { AppInput } from '../AppInput/AppInput';
 
 import styles from './Search.module.scss';
 
-interface SearchProps {
-  placeholder?: string;
-  submitEventHandler: Function;
-}
-
-export const Search: FC<SearchProps> = ({ placeholder, submitEventHandler }: SearchProps) => {
+export const Search: FC = () => {
+  const router = useRouter();
+  const { params } = useCurrentStateAndParams();
   const [searchCondition, setSearchCondition] = useState('');
-
-  // const router = useRouter();
 
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    if (submitEventHandler) submitEventHandler(searchCondition);
-    // router.stateService.go('profile', {
-    //   query: searchCondition,
-    // });
+    if (searchCondition) {
+      router.stateService.go('search', {
+        query: searchCondition,
+        page: 1,
+      });
+    }
   };
+
+  useEffect(() => {
+    setSearchCondition(params.query);
+  }, [params.query]);
 
   return (
     <form onSubmit={onSubmitHandler} className={styles.form}>
       <AppInput
         type="text"
+        defaultValue={params.query || ''}
         onChangeHandler={(value: string) => { setSearchCondition(value); }}
-        placeholder={placeholder}
+        placeholder="The repository name"
         className={styles.field}
       />
       <button className={`btn ${styles.submitBtn}`} type="submit">Search</button>

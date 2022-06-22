@@ -12,5 +12,15 @@
     color: $white;
     height: 4.8rem;
     cursor: pointer;
+    text-decoration: none;
+    border-radius: 0.4rem;
+    font-weight: 700;
+    outline: none;
+
+    &:hover {
+      background-color: $accent;
+      border-color: $accent;
+      color: $white;
+    }
   }
 }

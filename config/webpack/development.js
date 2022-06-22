@@ -11,6 +11,7 @@ module.exports = {
     open: true,
     hot: true,
     liveReload: true,
+    historyApiFallback: true,
   },
   devtool: 'inline-source-map',
   module: {
@@ -47,7 +48,14 @@ module.exports = {
         use: [
           'style-loader',
           'css-modules-typescript-loader',
-          { loader: 'css-loader', options: { modules: true } },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]',
+              },
+            },
+          },
           {
             loader: 'sass-loader',
             options: {

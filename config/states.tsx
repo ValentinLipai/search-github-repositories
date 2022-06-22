@@ -1,4 +1,4 @@
-import { Home, Profile } from '../src/pages';
+import { Home, Profile, Search } from '../src/pages';
 
 const home = {
   name: 'home',
@@ -6,11 +6,17 @@ const home = {
   component: Home,
 };
 
-const profile = {
-  name: 'profile',
-  url: '/profile?query&page',
+const search = {
+  name: 'search',
+  url: '/search?query&page',
+  component: Search,
+};
+
+const author = {
+  name: 'author',
+  url: '/author?authorName',
   component: Profile,
 };
 
-const states = [home, profile];
+const states = [home, author, search];
 export default states;
