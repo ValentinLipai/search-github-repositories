@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useCurrentStateAndParams, useRouter } from '@uirouter/react';
 import { fetchAuthorInfo } from 'Helpers/api';
 import { GitHubUserInfo } from 'Types/api';
-import { Store } from 'react-notifications-component';
 import { Placeholder } from 'Components';
 import { ProfilePlaceholder } from './ProfilePlaceholder';
+import { showNotification } from 'Helpers/helpers';
 import styles from './Profile.module.scss';
 
 export const Profile = () => {
@@ -15,19 +15,7 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!params.authorName) {
-      Store.addNotification({
-        title: 'Error!',
-        message: 'Error: authorName is not provided',
-        type: 'danger',
-        insert: 'top',
-        container: 'top-right',
-        animationIn: ['animate__animated', 'animate__fadeIn'],
-        animationOut: ['animate__animated', 'animate__fadeOut'],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      showNotification('danger', 'Error!', 'Error: authorName is not provided');
       router.stateService.go('home');
       return;
     }

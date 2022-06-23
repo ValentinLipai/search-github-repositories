@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import { SearchRepositoriesResponse, RepositoryItem } from 'types/api';
 import { useCurrentStateAndParams, useRouter } from '@uirouter/react';
-import { Store } from 'react-notifications-component';
 import { searchRepositoriesByName } from 'Helpers/api';
+import { showNotification } from 'Helpers/helpers';
 
 import {
   SearchBar, Catalog, CatalogPlaceholder, Pagination,
@@ -34,19 +34,7 @@ export const Search: FC = () => {
       setIsLoading(false);
       
       if (response.code !== 200) {
-        Store.addNotification({
-          title: 'Error!',
-          message: response.data.message,
-          type: 'danger',
-          insert: 'top',
-          container: 'top-right',
-          animationIn: ['animate__animated', 'animate__fadeIn'],
-          animationOut: ['animate__animated', 'animate__fadeOut'],
-          dismiss: {
-            duration: 5000,
-            onScreen: true,
-          },
-        });
+        showNotification('danger', 'Error!', response.data.message);
       } else {
         setRepositories(response.data.items);
         const maxPage = response.data.total_count > MAX_RESULTS
@@ -56,19 +44,7 @@ export const Search: FC = () => {
       }
 
     } else {
-      Store.addNotification({
-        title: 'Error!',
-        message: 'Error fetching data',
-        type: 'danger',
-        insert: 'top',
-        container: 'top-right',
-        animationIn: ['animate__animated', 'animate__fadeIn'],
-        animationOut: ['animate__animated', 'animate__fadeOut'],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      showNotification('danger', 'Error!', 'Error fetching data');
     }
   };
 

@@ -1,4 +1,4 @@
-import { Store } from 'react-notifications-component';
+import { showNotification } from 'Helpers/helpers';
 
 export async function searchRepositoriesByName(query: string, page: number, perPage: number) {
   try {
@@ -8,19 +8,7 @@ export async function searchRepositoriesByName(query: string, page: number, perP
       data: await response.json(),
     };
   } catch (error) {
-    Store.addNotification({
-      title: 'Error!',
-      message: `Error fetching repositories. Message: ${error}`,
-      type: 'danger',
-      insert: 'top',
-      container: 'top-right',
-      animationIn: ['animate__animated', 'animate__fadeIn'],
-      animationOut: ['animate__animated', 'animate__fadeOut'],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+    showNotification('danger', 'Error!', `Error fetching repositories. Message: ${error}`);
     return null;
   }
 }
@@ -30,41 +18,7 @@ export async function fetchAuthorInfo(profile: string) {
     const response = await fetch(`https://api.github.com/users/${profile}`);
     return await response.json();
   } catch (error) {
-    Store.addNotification({
-      title: 'Error!',
-      message: `Error fetching profile info. Message: ${error}`,
-      type: 'danger',
-      insert: 'top',
-      container: 'top-right',
-      animationIn: ['animate__animated', 'animate__fadeIn'],
-      animationOut: ['animate__animated', 'animate__fadeOut'],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
-    return null;
-  }
-}
-
-export async function fetchAuthorStarred(profile: string) {
-  try {
-    const response = await fetch(`https://api.github.com/users/${profile}/starred`);
-    return await response.json();
-  } catch (error) {
-    Store.addNotification({
-      title: 'Error!',
-      message: `Error fetching profile info. Message: ${error}`,
-      type: 'danger',
-      insert: 'top',
-      container: 'top-right',
-      animationIn: ['animate__animated', 'animate__fadeIn'],
-      animationOut: ['animate__animated', 'animate__fadeOut'],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+    showNotification('danger', 'Error!', `Error fetching profile info. Message: ${error}`);
     return null;
   }
 }
