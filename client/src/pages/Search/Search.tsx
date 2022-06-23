@@ -75,10 +75,11 @@ export const Search: FC = () => {
       <SearchBar />
       <section>
         <div>
-          {isLoading && <CatalogPlaceholder cardsCount={RESULTS_PER_PAGE} />}
-          {!isLoading && pagesCount
-            ? <Catalog items={repositories} />
-            : <div className={styles.noResults}>No repositories found</div>}
+          {isLoading 
+            ? <CatalogPlaceholder cardsCount={RESULTS_PER_PAGE} />
+            : !!pagesCount && <Catalog items={repositories} />
+          }
+          {(!isLoading && !pagesCount) && <div className={styles.noResults}>No repositories found</div>}
         </div>
         <div className={styles.pagination}>
           {pagesCount > 1 && (
