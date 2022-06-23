@@ -31,11 +31,30 @@ export const Search: FC = () => {
     );
 
     if (response) {
-      const maxPage = response.data.total_count > MAX_RESULTS
-        ? MAX_RESULTS
-        : response.data.total_count;
-      setPagesCount(Math.ceil(maxPage / RESULTS_PER_PAGE));
-      setRepositories(response.data.items);
+      setIsLoading(false);
+      
+      if (response.code !== 200) {
+        Store.addNotification({
+          title: 'Error!',
+          message: response.data.message,
+          type: 'danger',
+          insert: 'top',
+          container: 'top-right',
+          animationIn: ['animate__animated', 'animate__fadeIn'],
+          animationOut: ['animate__animated', 'animate__fadeOut'],
+          dismiss: {
+            duration: 5000,
+            onScreen: true,
+          },
+        });
+      } else {
+        setRepositories(response.data.items);
+        const maxPage = response.data.total_count > MAX_RESULTS
+          ? MAX_RESULTS
+          : response.data.total_count;
+        setPagesCount(Math.ceil(maxPage / RESULTS_PER_PAGE));
+      }
+
     } else {
       Store.addNotification({
         title: 'Error!',
@@ -51,7 +70,6 @@ export const Search: FC = () => {
         },
       });
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {

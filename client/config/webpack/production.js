@@ -14,6 +14,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      {
         test: /\.module\.(s(a|c)ss)$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -40,7 +47,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(s(a|c)ss|css)$/,
+        test: /\.(s(a|c)ss)$/,
         exclude: /\.module\.(s(a|c)ss)$/,
         use: [
           MiniCssExtractPlugin.loader,
